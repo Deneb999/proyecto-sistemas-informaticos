@@ -22,7 +22,7 @@ class ThirdWeekTests(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
         try:
-            from P1.populate_catalog import populate
+            from populate_catalog import populate
             populate()
             User.objects.create_user(user, email, password)
         except ImportError:
