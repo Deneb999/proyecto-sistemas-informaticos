@@ -13,7 +13,7 @@ class FirstWeekTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         try:
-            from populate_catalog import populate
+            from P1.populate_catalog import populate
             populate()
         except ImportError:
             print('The module populate_catalog does not exist')
