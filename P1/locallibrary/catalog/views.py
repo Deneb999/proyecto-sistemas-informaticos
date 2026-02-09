@@ -18,17 +18,17 @@ def index(request):
     # The 'all()' is implied by default.
     num_authors = Author.objects.count()
     
-    # Extension 
-    num_titles = Book.objects.annotate(title_lower=Lower('title')).values('title_lower').distinct().count()
-    num_genres = Genre.objects.annotate(name_lower=Lower('name')).values('name_lower').distinct().count()
+    # Extension
+    magical_books = Book.objects.filter(summary__icontains='magic').count()
+    fiction_genres = Genre.objects.filter(name__icontains='fiction').count()
 
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
-        'num_titles': num_titles,
-        'num_genres': num_genres,
+        'magical_books': magical_books,
+        'fiction_genres': fiction_genres,
     }
     
 
