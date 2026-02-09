@@ -30,6 +30,12 @@ def index(request):
         'magical_books': magical_books,
         'fiction_genres': fiction_genres,
     }
+    
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+from django.views import generic
+
+class BookListView(generic.ListView):
+    model = Book
