@@ -21,6 +21,11 @@ def index(request):
     # Extension 
     num_titles = Book.objects.filter(title__icontains='a').count()
     num_genres = Genre.objects.annotate(name_lower=Lower('name')).values('name_lower').distinct().count()
+    
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0)
+    num_visits += 1
+    request.session['num_visits'] = num_visits
 
     context = {
         'num_books': num_books,
@@ -29,6 +34,7 @@ def index(request):
         'num_authors': num_authors,
         'num_titles': num_titles,
         'num_genres': num_genres,
+        'num_visits': num_visits,
     }
     
 
