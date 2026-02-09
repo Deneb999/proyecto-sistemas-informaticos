@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models.functions import Lower
 
 # Create your views here.
 
@@ -16,12 +17,18 @@ def index(request):
 
     # The 'all()' is implied by default.
     num_authors = Author.objects.count()
+    
+    # Extension 
+    num_titles = Book.objects.annotate(title_lower=Lower('title')).values('title_lower').distinct().count()
+    num_genres = Genre.objects.annotate(name_lower=Lower('name')).values('name_lower').distinct().count()
 
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
+        'num_titles': num_titles,
+        'num_genres': num_genres,
     }
 
     # Render the HTML template index.html with the data in the context variable
