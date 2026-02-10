@@ -5,5 +5,5 @@ cd P1
 
 pip install -r requirements.txt
 
-python manage.py collectstatic --no-input
-python manage.py migrate
+python locallibrary/manage.py collectstatic --no-input
+python locallibrary/manage.py migrate
