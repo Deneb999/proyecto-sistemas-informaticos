@@ -33,7 +33,7 @@ if SECRET_KEY is None:
 DEBUG = os.environ.get("DEBUG", False)
 POSTGRES_PORT = os.environ.get("POSTGRES_PORT",5432)
 
-ALLOWED_HOSTS = ['https://proyecto-sistemas-informaticos-p1.onrender.com/']
+ALLOWED_HOSTS = ['proyecto-sistemas-informaticos-p1.onrender.com']
 
 
 # Application definition
