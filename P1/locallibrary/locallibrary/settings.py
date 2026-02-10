@@ -31,6 +31,7 @@ if SECRET_KEY is None:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", False)
+POSTGRES_PORT = os.environ.get("POSTGRES_PORT",5432)
 
 ALLOWED_HOSTS = []
 
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 db_from_env = dj_database_url.config(
-    default='postgres://alumnodb:alumnodb@localhost:5433/psi',conn_max_age=500)
+    default=f'postgres://alumnodb:alumnodb@localhost:{POSTGRES_PORT}/psi',conn_max_age=500)
 
 DATABASES = {
     'default': db_from_env
