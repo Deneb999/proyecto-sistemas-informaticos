@@ -12,20 +12,25 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+from dotenv import load_dotenv
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+env_path = os.path.join(BASE_DIR, '.env')
+load_dotenv(env_path)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6j923y987ggnlea^_dw=)pr4prd^lyln(*hsongt@ijb@789k*'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if SECRET_KEY is None:
+    raise Exception("Add a secret key to your .env")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
 
 ALLOWED_HOSTS = []
 
@@ -75,7 +80,7 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 db_from_env = dj_database_url.config(
-    default='postgres://alumnodb:alumnodb@localhost:5432/psi',conn_max_age=500)
+    default='postgres://alumnodb:alumnodb@localhost:5433/psi',conn_max_age=500)
 
 DATABASES = {
     'default': db_from_env
