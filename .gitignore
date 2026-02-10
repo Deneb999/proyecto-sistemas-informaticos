@@ -1,2 +1,3 @@
 .venv
 P1/locallibrary/.env
+*.pyc
