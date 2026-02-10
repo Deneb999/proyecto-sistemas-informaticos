@@ -81,8 +81,12 @@ TEMPLATES = [
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-db_from_env = dj_database_url.config(
-    default=f'postgres://alumnodb:alumnodb@localhost:{POSTGRES_PORT}/psi',conn_max_age=500)
+if 'DATABASE_URL' in os.environ:
+    db_from_env = dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"), conn_max_age=500)
+else:
+    db_from_env = dj_database_url.config(
+        default=f'postgres://alumnodb:alumnodb@localhost:{POSTGRES_PORT}/psi',conn_max_age=500)
 
 DATABASES = {
     'default': db_from_env
