@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from datetime import date
+import uuid
 
 # Create your models here.
 
@@ -90,12 +92,7 @@ class Book(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.title
-    
 
-import uuid  # Required for unique book instances
-from datetime import date
-
-from django.conf import settings  # Required to assign User as a borrower
 
 
 class BookInstance(models.Model):
